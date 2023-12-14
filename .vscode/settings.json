@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
         "listint"
-    ]
+    ],
+    "C_Cpp.errorSquiggles": "disabled"
 }
