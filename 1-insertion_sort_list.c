@@ -10,29 +10,34 @@ void insertion_sort_list(listint_t **list)
 	if (*list != NULL)
 	{
 		listint_t *current = (*list)->next;
-		listint_t *temp, *prev_temp = NULL;
+		listint_t *temp, *prev_temp, *sorted_current = NULL;
 
 		while (current != NULL)
 		{
-			printf("%d\n", current->n);
 			if (current->prev != NULL && current->n < current->prev->n)
 			{
 				temp = current;
 				prev_temp = current->prev;
-
 				prev_temp->next = temp->next;
 				if (temp->next != NULL)
 					temp->next->prev = prev_temp;
-				temp->prev = prev_temp->prev;
-				if (prev_temp->prev != NULL)
-					prev_temp->prev->next = temp;
+				sorted_current = prev_temp;
+				while (sorted_current->prev != NULL && sorted_current->prev->n > temp->n)
+				{
+					sorted_current = sorted_current->prev;
+				}
+
+				temp->prev = sorted_current->prev;
+				if (sorted_current->prev != NULL)
+					sorted_current->prev->next = temp;
 				else
 					*list = temp;
-				prev_temp->prev = temp;
-				temp->next = prev_temp;
+				sorted_current->prev = temp;
+				temp->next = sorted_current;
 				current = prev_temp;
 				print_list(*list);
 			}
+			printf("%d\n", current->n);
 			current = current->next;
 		}
 	}
