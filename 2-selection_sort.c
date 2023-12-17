@@ -25,9 +25,12 @@ void selection_sort(int *array, size_t size)
 				mini_num_index = next_index;
 			}
 		}
-		temp = array[current_index];
-		array[current_index] = array[mini_num_index];
-		array[mini_num_index] = temp;
-		print_array(array, size);
+		if (current_index != mini_num_index)
+		{
+			temp = array[current_index];
+			array[current_index] = array[mini_num_index];
+			array[mini_num_index] = temp;
+			print_array(array, size);
+		}
 	}
 }
