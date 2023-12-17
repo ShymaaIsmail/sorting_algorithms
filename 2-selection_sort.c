@@ -8,6 +8,6 @@
 */
 void selection_sort(int *array, size_t size)
 {
-	if (list == NULL || *list == NULL || (*list)->next == NULL)
+	if (array == NULL || *array == NULL)
 		return;
 }
