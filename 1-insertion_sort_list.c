@@ -37,7 +37,6 @@ void insertion_sort_list(listint_t **list)
 				current = prev_temp;
 				print_list(*list);
 			}
-			printf("%d\n", current->n);
 			current = current->next;
 		}
 	}
