@@ -11,7 +11,7 @@
 int partition(int *array, size_t size, int low_indicator, int high_indicator)
 {
 	int pivot = array[high_indicator];
-	int index = low_indicator;
+	int index = (low_indicator - 1);
 	int iterator = low_indicator;
 	int temp = 0;
 
@@ -19,17 +19,17 @@ int partition(int *array, size_t size, int low_indicator, int high_indicator)
 	{
 		if (array[iterator] < pivot)
 		{
+			index++;
 			temp = array[index];
 			array[index] = array[iterator];
 			array[iterator] = temp;
-			print_array(array, size);
-			index++;
 		}
 	}
-	temp = array[index];
-	array[index] = array[high_indicator];
+	temp = array[index + 1];
+	array[index + 1] = array[high_indicator];
 	array[high_indicator] = temp;
-	return (index);
+	print_array(array, size);
+	return (index + 1);
 }
 /**
 * recursive_sort - recursive_sort
