@@ -1,6 +1,18 @@
 #include "sort.h"
 
 /**
+* swap_two_int - swap_two_int
+* @a: first int
+* @b: second int
+*/
+void swap_two_int(int *a, int *b)
+{
+	int temp = *a;
+
+	*a = *b;
+	*b = temp;
+}
+/**
 * partition - partition
 * @array: array
 * @size: size
@@ -11,25 +23,29 @@
 int partition(int *array, size_t size, int low_indicator, int high_indicator)
 {
 	int pivot = array[high_indicator];
-	int index = (low_indicator - 1);
-	int iterator = low_indicator;
-	int temp = 0;
+	int j = 0;
+	int i = low_indicator - 1;
 
-	for (iterator = low_indicator; iterator < high_indicator; iterator++)
+	for (j = low_indicator; j <= high_indicator - 1; j++)
+
 	{
-		if (array[iterator] < pivot)
+		if (array[j] <= pivot)
 		{
-			index++;
-			temp = array[index];
-			array[index] = array[iterator];
-			array[iterator] = temp;
+			i++;
+			if (array[i] != array[j])
+			{
+				swap_two_int(&array[i], &array[j]);
+				print_array(array, size);
+			}
 		}
 	}
-	temp = array[index + 1];
-	array[index + 1] = array[high_indicator];
-	array[high_indicator] = temp;
-	print_array(array, size);
-	return (index + 1);
+
+	if (array[i + 1] != array[high_indicator])
+	{
+		swap_two_int(&array[i + 1], &array[high_indicator]);
+		print_array(array, size);
+	}
+	return (i + 1);
 }
 /**
 * recursive_sort - recursive_sort
@@ -57,10 +73,7 @@ void recursive_sort(int *array, size_t size, int low, int high)
 */
 void quick_sort(int *array, size_t size)
 {
-	if (array == NULL || size == 0)
+	if (array == NULL || size < 2)
 		return;
-	if (size >= 2)
-	{
-		recursive_sort(array, size, 0, size - 1);
-	}
+	recursive_sort(array, size, 0, size - 1);
 }
